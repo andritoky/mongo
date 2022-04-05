@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>voir-client</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/login.css" rel="stylesheet">
+</head>
+<body>
+  
+ 
+  <!--  page fichier header -->
+    
+    <div class="contener">
+        
+        <div class="logo"> LifeTechnologie </div>
+      <div class="div-register"><a href="users/creer"  class="btn btn-dark">Register</a></div>
+        
+      
+      <!--  form envoye un post en '/'page acceuille -->
+      
+      <div class="box"> 
+       <h2>User Login</h2> 
+       <div class="message">
+         <% if( messages.error) { %>
+      
+             <div  class="error"> <%=  messages.error %></div>
+       
+         <% } %> 
+      </div>
+      <form action="/login" method="post"  "> 
+              
+  
+              <div class="form-group">
+                <input type="email" class="form-control "    placeholder=" Email" required name="email" >
+              </div>
+              <br>
+
+  
+              <div class="form-group">
+                <input type="password" class="form-control "    placeholder=" Password" required name="password" >
+              </div>
+              <span >Mot de passe oublié ?</span>
+              
+             
+              <button type="submit" class="btn btn-primary button-login">LOGIN</button>
+       </form>
+      </div>
+  
+       
+       
+   </div>
+  
+  
+  </body>
+</html>  
+
+

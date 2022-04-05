@@ -1,0 +1,33 @@
+#block-zones{
+    display: none;
+    position: absolute;
+    top:65px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.884);
+}
+.box-zones{
+    position: relative;
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: rgb(177, 175, 175);
+}
+.box{
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+.box-retour{
+    position: relative;
+    width: 100%;
+    text-align: right;
+}
+
+.box-zones h4{
+   color :rgb(255, 255, 255);
+}

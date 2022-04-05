@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>edit-client</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  
+ 
+<!--  page fichier header -->
+<%- include('header'); %>
+  <div class="contener">
+    <br> 
+    <!--<% if(locals.flash && locals.flash.error) {%>
+            <div class="alert alert-danger" role="alert"> <%= locals.flash.error %> </div> 
+    <% } %> -->
+    <h1>Modifier <%= dataEdit.nom %></h1>
+    <!--  form envoye un post en '/'page acceuille -->
+    <form action="<%= dataEdit.id %>" method="post" enctype="multipart/form-data"> 
+            <div class="form-group">
+              <label for="exampleInput">Entrer Nom :</label>
+              <input type="text" class="form-control" id=""   placeholder=" nom" value="<%= dataEdit.nom %>" name="nom" >
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput">Entrer Adresse : </label>
+              <input type="text" class="form-control" id=""   placeholder=" adresse" value="<%= dataEdit.adresse %>" name="adresse" >
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput">Entrer Description</label>
+              <input type="text" class="form-control" id=""   placeholder=" description" value="<%= dataEdit.description %>" name="description" >
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInput"> Image :</label>
+                <input type="file" class="form-control"  id ="input-image" accept="image/*" value="<%= dataEdit.image %>" required name="myImageEdit" />
+              </div>
+           
+            <br>
+           
+            <button type="submit" class="btn btn-primary ">Submit</button>
+     </form>
+
+ </div>
+
+
+</body>
+</html>  
+
+

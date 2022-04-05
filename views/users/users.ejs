@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list-users</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+
+
+    <!--  table pagination -->
+    
+</head>
+<body>
+
+<div class="contener">
+    
+<br> 
+<h2>Liste des Users</h2>
+<div class="div-creer" >
+    
+  <a class="btn btn-primary" href="users/creer" role="button">Creer +</a>
+</div>
+
+<table class="table" id="example">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Contacte</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% dataUsers.forEach( user => { %>
+      <tr>
+        <td><%=user.nom %></td>
+        <td>0<%=user.contact %></td>
+        <td><%=user.email %></td>
+        <td> <a href="users/voir/<%=user.id %>" class="btn btn-dark" >Voir</a>
+             <a href="users/edit/<%=user.id %>" class="btn btn-primary" >Edit</a>
+             <a href="users/sup/<%=user.id %>" class="btn btn-danger">Sup</a></td>
+      </tr>
+    <% }) %>
+   
+
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>  

@@ -1,0 +1,30 @@
+<header>
+   
+    <div class="">
+     
+        <nav class="">
+          <div class="hdiv divlien">
+                <a href="/clients">Home</a>
+                <a href="clients/creer">Creer</a>
+          </div>
+
+          <div class="hdiv hright">
+            <!-- appele la methodeOverride app.delete --> 
+             <% if( dataUser) { %>
+                <div class="user"> 
+                    <span>User connecté : <%= dataUser.nom %>  </span> 
+                    <span> email : <%= dataUser.email %>  </span>
+                </div>
+                <div class="logout">
+                    <form action="/logout?_method=DELETE" method="post"  ">      
+                       <button type="submit" class="btn btn-primary ">log Out</button>
+                    </form>
+               </div>
+
+            <% } %> 
+        </div>
+
+        </nav>
+        
+      </div>
+</header>

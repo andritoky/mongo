@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list-zones</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+
+
+    <!--  table pagination -->
+    
+</head>
+<body>
+
+<div class="contener">
+    
+<br> 
+<h2>Liste des Zones</h2>
+<div class="div-creer" >
+    
+  <a class="btn btn-primary" href="zones/creer" role="button">Creer +</a>
+</div>
+
+<table class="table" id="example">
+  <thead>
+    <tr>
+      <th scope="col">Zone</th>
+      <th scope="col">Info</th>
+      <th scope="col">Identification</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% dataZones.forEach( zone => { %>
+      <tr>
+        <td><%=zone.zone %></td>
+        <td><%=zone.info %></td>
+        <td><%=zone.indentification %></td>
+        <td><%=zone.type %> </td>
+      </tr>
+    <% }) %>
+   
+
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>  

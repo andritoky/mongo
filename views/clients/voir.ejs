@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>voir-client</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/clientsZones.css" rel="stylesheet">
+</head>
+<body>
+  
+ 
+<!--  page fichier header -->
+<%- include('header'); %>
+  <div class="contener">
+    <br> 
+   
+    
+    <h1>Nom :<%= dataVoir.nom %></h1>
+    <h1>Adresse :<%= dataVoir.adresse %></h1>
+    
+
+    <!-- ZONES  -->
+    <button id="ajout-zones" class="btn btn-primary bouton-submit">Ajout zone</button>
+
+    <table class="table" id="example">
+        <thead>
+          <tr>
+            <th scope="col">Zone</th>
+            <th scope="col">Identification</th>
+            <th scope="col">Materiel</th>
+            <th scope="col">Info</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <% dataZones.forEach( zone => { %>
+            <tr>
+              <td><%=zone.zone %></td>
+              <td><%=zone.identification %></td>
+              <td><%=zone.materiel %></td>
+              <td><%=zone.info %></td>
+              <td><%=zone.type %></td>
+              <td> 
+                <a href="/zones/zones-client-sup/<%=zone.id %>" class="btn btn-danger">Sup</a>
+              </td>
+            </tr>
+          <% }) %>
+         
+      
+        </tbody>
+      </table>
+
+      <div>
+          <img src="/uploads/<%= dataVoir.image %>" alt="" width="150px" >
+        </div>
+
+
+    <div id="block-zones">
+      <div class="box-zones">
+        <div class="box">
+            <div class="box-retour">
+                <button  id="retour-zones" class="btn btn-dark retour-zones">Retour</button>
+            </div>
+            
+            <h4>Nouveau zone :</h4>
+
+            <form action="/zones/client-creer-zones/<%= dataVoir.id %>" method="post" > 
+              <div class="form-group">
+                <input type="text" class="form-control" id="zone"   placeholder=" zone" required name="zone" >
+              </div><br>
+
+              <div class="form-group">
+                <input type="text" class="form-control" id="info"   placeholder=" info" required name="info" >
+              </div><br>
+
+              <div class="form-group">
+                  <input type="text" class="form-control" id="identification"   placeholder=" identification" required name="identification" >
+              </div><br>
+
+              <div class="form-group">
+                <input type="text" class="form-control" id="materiel"   placeholder=" materiel" required name="materiel" >
+              </div><br>
+
+              <div class="form-group">
+                <input type="text" class="form-control" id="type"   placeholder=" type : Panique / Ronde / Arm-Desarm" required name="type" >
+              </div>
+              <br>
+
+              <div class="block-boutton">
+                  <button id="ajout-zones" class="btn btn-primary bouton-submit" type="submit">Ajouter</button>  
+              </div>
+        </form>
+        
+    </div>
+   </div>
+</div>
+  
+
+ </div>
+
+<script>
+      let block_zone = document.getElementById('block-zones')
+      let ajout_zone = document.getElementById('ajout-zones')
+      let retour_zone = document.getElementById('retour-zones')
+
+          ajout_zone.addEventListener("click", ()=>{
+            block_zone.style.display = "block"
+          })
+
+          retour_zone.addEventListener("click", ()=>{
+            block_zone.style.display = "none"
+          })
+
+</script>
+
+</body>
+</html>  
+
+

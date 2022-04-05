@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>register</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  
+ 
+<!--  page fichier header -->
+  
+  <div class="contener">
+
+    <br> 
+    
+    <div class="box">  
+    <h2>Create User</h2>
+    <!--  form envoye un post en '/'page acceuille -->
+    <form action="creer" method="post" > 
+      
+
+            <div class="form-group">
+              <input type="text" class="form-control" id=""   placeholder=" Nom" required name="nom" >
+            </div><br>
+
+            <div class="form-group">
+              <input type="email" class="form-control" id=""   placeholder=" Email" required name="email" >
+            </div><br>
+
+            <div class="form-group">
+                <input type="number" class="form-control" id=""   placeholder=" Contact" required name="contact" >
+            </div><br>
+
+            <div class="form-group">
+              <input type="password" class="form-control" id=""   placeholder=" Password" required name="password" >
+            </div>
+
+           
+           
+            <br>
+           <div class="block-boutton">
+              <button type="submit" class="btn btn-primary bouton-submit">Enregistrer</button>
+              <a href="/login"  class="btn btn-dark button-login">Login</a>
+              <a href="/users"  class="btn btn-primary button-list">Liste</a>
+           </div>
+            
+     </form>
+    </div>
+    
+     <br>
+     
+     
+
+ </div>
+
+
+</body>
+</html>  
+
+

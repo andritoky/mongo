@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list-clients</title>
+
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/pagination.css" rel="stylesheet">
+
+   
+</head>
+<body>
+<%- include('header'); %>
+<div class="contener">
+    
+<br> 
+
+<div class="div-ajouter-et-search" >
+  <input type="search"  placeholder=" Recherche" id="input-search"> 
+  <button class="btn " id="btn-search" onclick=(search()) >Search</button> 
+  <div class="div-ajouter">
+      <a class="btn btn-primary" href="clients/creer" role="button">Ajouter +</a>
+  </div>
+</div>
+
+<table class="table   clients-liste" id="example">
+  <thead>
+    <tr>
+      <th scope="col">Profile</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Desciption</th>
+      <th scope="col" class="right">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% dataClient.forEach( client => { %>
+      <tr>
+        <td> <div class="box-profile-image"> <img src="/uploads/<%=client.image %>" class="profile-image"> </div></td>
+        <td><%=client.nom %></td>
+        <td><%=client.adresse %></td>
+        <td><%=client.description %></td>
+        <td class="right"> <a href="clients/voir/<%=client.id %>" class="btn btn-dark" >Voir</a>
+             <a href="clients/edit/<%=client.id %>" class="btn btn-primary" >Edit</a>
+             <a href="clients/sup/<%=client.id %>" class="btn btn-danger">Sup</a></td>
+             
+      </tr>
+    <% }) %>
+   
+
+  </tbody>
+</table>
+
+<script>
+
+    let input_search = document.getElementById('input-search')
+    let tableau = document.getElementById('example')
+         
+    async function search(){
+          if(input_search.value ==""){
+            input_search.placeholder = "   Saisir text !!"
+            input_search.style.borderColor = "red"
+          }
+          else{
+            let reponse = await fetch("http://localhost:3000/clients/search/" + input_search.value)
+            let data = await reponse.json()
+            input_search.style.borderColor = "#9e9e9e"
+            
+            if(data.length >= 0){
+              createTemplate(data)
+            }
+            if(data.length === 0){
+              console.log("0 resultat");
+              sansResultat()
+            }
+            
+          }
+    }
+
+    function sansResultat(){
+      let p = document.createElement("p")
+          p.innerHTML = "0 resultat !"
+          p.style.marginTop = "10px"
+          
+      tableau.innerHTML = ""
+      tableau.appendChild(p)
+    }
+
+    function createTemplate (data){
+
+      let thead = document.createElement("thead")
+      let tbody = document.createElement("tbody")
+      //insert thead
+      let tr = document.createElement("tr")
+      let th1 = document.createElement("th")
+          th1.innerHTML = "Nom"
+      let th2 = document.createElement("th")
+          th2.innerHTML = "Adresse"
+      let th3 = document.createElement("th")
+          th3.innerHTML = "Description"
+      let th4 = document.createElement("th")
+          th4.innerHTML = "Action"
+          th4.className = "right";
+
+      th1.scope = "col"; th2.scope = "col"; th3.scope = "col"; th4.scope = "col";
+      tr.appendChild(th1);tr.appendChild(th2);tr.appendChild(th3);tr.appendChild(th4);
+      thead.appendChild(tr)
+
+      //insert tbody
+      for(var r = 0; r < data.length ;r++) { 
+
+        let td1 = document.createElement("td"), 
+            td2 = document.createElement("td"),
+            td3 = document.createElement("td"),
+            td4 = document.createElement("td")
+           //creation bouton
+        let btn_voir = document.createElement("a"),    
+            btn_edit = document.createElement("a"),
+            btn_sup = document.createElement("a")
+
+            btn_voir.className = "btn btn-primary"
+            btn_edit.className = "btn btn-dark"
+            btn_sup.className = "btn btn-danger"
+
+            btn_voir.innerHTML = "Voir"
+            btn_edit.innerHTML = "Edit"
+            btn_sup.innerHTML = "Sup"
+
+            btn_voir.href = "clients/voir/"+data[r]._id
+            btn_edit.href = "clients/edit/"+data[r]._id
+            btn_sup.href = "clients/sup/"+data[r]._id
+
+            btn_voir.style.marginRight = "4px";
+            btn_sup.style.marginLeft = "4px";
+
+            td1.innerHTML = ""+ data[r].nom +""
+            td2.innerHTML = ""+ data[r].adresse +""
+            td3.innerHTML = ""+ data[r].description +""
+
+            td4.className = "right"
+            td4.appendChild(btn_voir)
+            td4.appendChild(btn_edit)
+            td4.appendChild(btn_sup)
+
+        let tr = document.createElement("tr")
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            tr.appendChild(td4)
+
+        tbody.appendChild(tr)
+      }	
+
+      tableau.innerHTML = ""
+      tableau.appendChild(thead)
+      tableau.appendChild(tbody)
+      document.getElementById("buttons").innerHTML = ""    //div bouton pagination  
+
+    }
+      
+
+  
+  
+</script>
+
+<script >
+
+    var $table = document.getElementById("example"),
+
+    $n = 7,
+    $rowCount = $table.rows.length,
+    $firstRow = $table.rows[0].firstElementChild.tagName,
+    $hasHead = ($firstRow === "TH"),
+    $tr = [],
+    $i,$ii,$j = ($hasHead)?1:0,
+    $th = ($hasHead?$table.rows[(0)].outerHTML:"");
+
+    var $pageCount = Math.ceil($rowCount / $n);
+
+    if ($pageCount > 1) {
+    
+      for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
+      $tr[$ii] = $table.rows[$i].outerHTML;
+      $table.insertAdjacentHTML("afterend","<div id='buttons'></div");
+      sort(1);
+    }
+
+    function sort($p) {
+    
+      var $rows = $th,$s = (($n * $p)-$n);
+      for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
+        $rows += $tr[$i];
+      
+      $table.innerHTML = $rows;
+
+      document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
+      document.getElementById("id"+$p).setAttribute("class","active");
+    }
+
+
+
+    function pageButtons($pCount,$cur) {
+
+      var $prevDis = ($cur == 1)?"disabled":"",
+          $nextDis = ($cur == $pCount)?"disabled":"",
+      
+        $buttons = "<input type='button' class = 'btn-pag' value='&lt; Prev' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
+        for ($i=1; $i<=$pCount;$i++)
+        $buttons += "<input type='button' class = 'btn-pag' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
+        $buttons += "<input type='button' class = 'btn-pag' value='Next &gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
+        return $buttons;
+    }
+</script>
+
+</div>
+</body>
+</html>  

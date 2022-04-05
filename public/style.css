@@ -1,0 +1,118 @@
+
+header{
+    position: relative;
+    width: 100%;
+    background-color: black;
+    color: aliceblue;
+    background-color: #444343;
+}
+nav{
+    position: relative;
+    width: 100%;
+    
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    margin-left: 40px;
+    
+}
+
+.hdiv{
+    display: inline-block;
+    padding: 20px;
+}
+.divlien{
+    vertical-align: center;
+}
+.hright{
+    position: absolute;
+    right: 20px;
+    width: auto;
+}
+
+.hright div{
+    vertical-align: center;
+}
+.user{
+    margin-right: 100px;
+}
+.user span{
+    margin-right: 10px;
+}
+
+.logout{
+  position: absolute;
+  top: 12px;
+  right: 0px;
+}
+
+
+
+
+
+
+.contener{
+    width: 75%;
+    margin: 0 auto;
+}
+.div-ajouter-et-search{
+    position: relative;
+}
+.div-ajouter-et-search input{
+    border: 2px solid rgba(0, 0, 0, 0.541);
+    border-radius: 5px;
+    height: 37px;
+    width: 250px;
+}
+.div-ajouter-et-search input:hover{
+    border: 2px solid rgba(0, 0, 0, 0.842);
+}
+.div-ajouter{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    width: 100px;
+    text-align: right;
+}
+
+.clients-liste tr{
+}
+.right{
+    text-align: right;
+}
+
+.box-profile-image{
+   width: 40px;
+   height: 40px;
+   border: 2px solid rgba(0, 0, 0, 0.5);
+   border-radius: 50px;
+   overflow: hidden;
+}
+.profile-image{
+    width: 100%;
+}
+
+/* pagnation */
+  
+input[type="button"] {
+    transition: all .3s;
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+    font-size: 15px;
+  }
+  
+  input[type="button"]:not(.active) {
+    background-color:transparent;
+  }
+  
+  .active {
+    background-color: #ff4d4d;
+    color :#fff;
+  }
+  
+  input[type="button"]:hover:not(.active) {
+    background-color: #ddd;
+  }
